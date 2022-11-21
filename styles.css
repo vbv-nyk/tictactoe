@@ -19,11 +19,15 @@ body{
     gap: 50px;
 }
 
+.display-info{
+    color: white;
+    font-weight: bolder;
+}
+
 .player{
     display: flex;
     color: white;
     font-weight: bolder;
-
     flex-direction: column;
     gap: 20px;
 }
@@ -40,6 +44,11 @@ body{
 }
 
 .board-item{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-weight: 2000;
     background-color: rgb(71, 34, 10)
 }
 
@@ -50,3 +59,4 @@ body{
     color: white;
     background-color: rgb(70, 16, 67);
 }
+
