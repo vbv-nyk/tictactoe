@@ -5,10 +5,16 @@ const gameBoard = (function(){
     const displayInfo = document.querySelector(".display-info");
     const player1Name = document.querySelector(".player-1")
     const player2Name = document.querySelector(".player-2")
+    const resetScore = document.querySelector(".reset-score");
+    const resetGame = document.querySelector(".reset-game");
+    const playerOneScore = document.querySelector(".player-1-score");
+    const playerTwoScore = document.querySelector(".player-2-score");
+
     let board = [];
     let turn = 0;
     let won = false;
 
+    resetScore.addEventListener("click",()=>{resetBoard();})
     const player = function(name){
         return{name};
     }
@@ -40,10 +46,10 @@ const gameBoard = (function(){
         })
     }
     const checkBoard = function(playerTurn,curPlayer){
-        console.log(board);
         if((board[1] == playerTurn && board[2] == playerTurn && board[3] == playerTurn) || (board[3] == playerTurn && board[5] == playerTurn && board[7] == playerTurn) || (board[4] == playerTurn && board[5] == playerTurn && board[6] == playerTurn) || (board[7] == playerTurn && board[8] == playerTurn && board[9] == playerTurn) || (board[1] == playerTurn && board[5] == playerTurn && board[9] == playerTurn) || (board[1] == playerTurn && board[4] == playerTurn && board[7] == playerTurn) || (board[2] == playerTurn && board[5] == playerTurn && board[8] == playerTurn) || ((board[3] == playerTurn && board[6] == playerTurn && board[9] == playerTurn))){
             won  = true;
             displayInfo.textContent = `${curPlayer} Wins`
+           playerTurn == "X" ? playerOneScore.textContent = Number(playerOneScore.textContent)+1 : playerTwoScore.textContent = Number(playerTwoScore.textContent) + 1;
         }
         if(turn == 9 && !won){
             displayInfo.textContent = `It's a Tie`
@@ -60,6 +66,7 @@ const gameBoard = (function(){
         won = false;
         displayInfo.textContent = `${player1}'s Turn`
     }
+
     return{resetBoard};
 })();
 
