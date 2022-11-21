@@ -5,7 +5,8 @@ const gameBoard = (function(){
     const displayInfo = document.querySelector(".display-info");
     const player1Name = document.querySelector(".player-1")
     const player2Name = document.querySelector(".player-2")
-    const resetScore = document.querySelector(".reset-score");
+    const resetBoardButton = document.querySelector(".reset-board");
+    const resetScoreButton = document.querySelector(".reset-score");
     const playerOneScore = document.querySelector(".player-1-score");
     const playerTwoScore = document.querySelector(".player-2-score");
 
@@ -13,7 +14,8 @@ const gameBoard = (function(){
     let turn = 0;
     let won = false;
 
-    resetScore.addEventListener("click",()=>{resetBoard();})
+    resetBoardButton.addEventListener("click",()=>{resetBoard();})
+    resetScoreButton.addEventListener("click",()=>{resetScore();})
 
     let player1 = player1Name.value;
     let player2 = player2Name.value;
@@ -70,7 +72,13 @@ const gameBoard = (function(){
         board = [];
         turn = 0;
         won = false;
-        displayInfo.textContent = `${player1}'s Turn`
+        displayInfo.textContent = `${player1}'s Turn`;
+    }
+
+    const resetScore = function(){
+        resetBoard();
+        playerOneScore.textContent = 0;
+        playerTwoScore.textContent = 0;
     }
 
     return{resetBoard};
