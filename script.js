@@ -6,7 +6,6 @@ const gameBoard = (function(){
     const player1Name = document.querySelector(".player-1")
     const player2Name = document.querySelector(".player-2")
     const resetScore = document.querySelector(".reset-score");
-    const resetGame = document.querySelector(".reset-game");
     const playerOneScore = document.querySelector(".player-1-score");
     const playerTwoScore = document.querySelector(".player-2-score");
 
@@ -72,11 +71,7 @@ const gameBoard = (function(){
         displayInfo.textContent = `${player1}'s Turn`
     }
 
-    const newGame = function(){
-        resetBoard();
-        playerOneScore.textContent = 0;
-        playerTwoScore.textContent = 0;
-    }
+
     return{resetBoard};
 })();
 
