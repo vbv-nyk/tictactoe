@@ -2,40 +2,52 @@
 
 const gameBoard = (function(){
     const boardItem = document.querySelectorAll(".board-item");
+    const displayInfo = document.querySelector(".display-info");
+    const player1Name = document.querySelector(".player-1")
+    const player2Name = document.querySelector(".player-2")
     let board = [];
     let turn = 0;
     let won = false;
 
+    const player = function(name){
+        return{name};
+    }
+
+    const player1 = "Vaibhav";
+    const player2 = "vi";
+
+    displayInfo.textContent = `${player1}'s Turn`
+    player1Name.textContent = player1;
+    player2Name.textContent = player2;
     for(let boardCell of boardItem) {
         boardCell.addEventListener("click",(event)=>{
-            if(turn == 9 || won == true){
+            if(won){
                 resetBoard();
             }else if(!boardCell.textContent){
                 if(turn&1){
+                    displayInfo.textContent = `${player1}'s Turn`;
                     boardCell.textContent = 'O';
                     board[event.target.dataset['item']] = 'O';
-                    checkBoard('O');
                 }else{
+                    displayInfo.textContent = `${player2}'s Turn`;
                     boardCell.textContent = 'X';                    
                     board[event.target.dataset['item']] = 'X';
-                    checkBoard('X');
                 }  
                 turn++;
+                checkBoard('O',player2);
+                checkBoard('X',player1);
             }
         })
     }
-
-    const createBoard = function(player1Name, 
-        player2Name){
-        const player1 = player(player1Name);
-        const player2 = player(player2Name);    
-    }
-
-    const checkBoard = function(playerTurn){
+    const checkBoard = function(playerTurn,curPlayer){
         console.log(board);
         if((board[1] == playerTurn && board[2] == playerTurn && board[3] == playerTurn) || (board[3] == playerTurn && board[5] == playerTurn && board[7] == playerTurn) || (board[4] == playerTurn && board[5] == playerTurn && board[6] == playerTurn) || (board[7] == playerTurn && board[8] == playerTurn && board[9] == playerTurn) || (board[1] == playerTurn && board[5] == playerTurn && board[9] == playerTurn) || (board[1] == playerTurn && board[4] == playerTurn && board[7] == playerTurn) || (board[2] == playerTurn && board[5] == playerTurn && board[8] == playerTurn) || ((board[3] == playerTurn && board[6] == playerTurn && board[9] == playerTurn))){
-            console.log(`${playerTurn} Wins`);
             won  = true;
+            displayInfo.textContent = `${curPlayer} Wins`
+        }
+        if(turn == 9 && !won){
+            displayInfo.textContent = `It's a Tie`
+            won = true;
         }
     }
 
@@ -46,14 +58,10 @@ const gameBoard = (function(){
         board = [];
         turn = 0;
         won = false;
+        displayInfo.textContent = `${player1}'s Turn`
     }
-    return{createBoard,resetBoard};
+    return{resetBoard};
 })();
 
-const player = function(name){
-    let score = 0;
-    return{name,score};
-}
 
 gameBoard;
-gameBoard.createBoard("Vaibhav","Vilas");
