@@ -14,19 +14,24 @@ const gameBoard = (function(){
     let turn = 0;
     let won = false;
 
+    resetGame.addEventListener("click",function(){
+        newGame();
+    })
     resetScore.addEventListener("click",()=>{resetBoard();})
     const player = function(name){
         return{name};
     }
 
-    const player1 = "Vaibhav";
-    const player2 = "vi";
+    let player1 = player1Name.value;
+    let player2 = player2Name.value;
 
     displayInfo.textContent = `${player1}'s Turn`
     player1Name.textContent = player1;
     player2Name.textContent = player2;
     for(let boardCell of boardItem) {
         boardCell.addEventListener("click",(event)=>{
+            player1 = player1Name.value;
+            player2 = player2Name.value;
             if(won){
                 resetBoard();
             }else if(!boardCell.textContent){
@@ -67,6 +72,11 @@ const gameBoard = (function(){
         displayInfo.textContent = `${player1}'s Turn`
     }
 
+    const newGame = function(){
+        resetBoard();
+        playerOneScore.textContent = 0;
+        playerTwoScore.textContent = 0;
+    }
     return{resetBoard};
 })();
 
