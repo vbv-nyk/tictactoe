@@ -7,7 +7,7 @@ body{
     display: flex;
     height: 100vh;
     max-height: 100vh;
-    background-color: rgb(15, 14, 14);
+    background-color: rgb(38, 66, 53);
     flex-direction: column;
     align-items: center;
     justify-content: center;
@@ -32,6 +32,20 @@ body{
     gap: 20px;
 }
 
+input[type="text"]{
+    background-color: transparent;
+    border: none;
+    text-align: center;
+    color: white;
+    font-size: 16px;
+    border: 1px transparent solid;
+    padding: 10px;
+    width: 100px;
+}
+
+input[type="text"]:hover{
+    border: 1px white solid;
+}
 .player .score{
     font-size: 20px;
     text-align: center;
@@ -49,7 +63,7 @@ body{
     justify-content: center;
     color: white;
     font-weight: 2000;
-    background-color: rgb(71, 34, 10)
+    background-color: rgb(34, 24, 18)
 }
 
 .options-container button{
@@ -57,6 +71,6 @@ body{
     padding: 20px 15px;
     font-size: 15px;
     color: white;
-    background-color: rgb(70, 16, 67);
+    background-color: rgb(194, 124, 19);
 }
 
